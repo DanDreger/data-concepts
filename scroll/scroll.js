@@ -9,11 +9,13 @@
   // Starting groups: 0 low, 1 moderate, 2 high
   const START = Array.from({ length: 100 }, (_, i) => (i < 47 ? 0 : i < 88 ? 1 : 2));
   // [dot index, group it moves to, progress at which it moves]
+  // The study compares a baseline and a follow-up assessment (about 12 months apart on average); it has no data on
+  // which group improves sooner. So the moves are interleaved across the whole year and neither group goes "first".
   const MOVES = [
-    [88, 1, .16], [89, 1, .20], [90, 1, .24], [91, 1, .28], [92, 1, .32],   // high → moderate
-    [93, 0, .36], [94, 0, .40],                                             // high → low
-    ...Array.from({ length: 15 }, (_, k) => [47 + k, 0, .46 + k * .026]),   // moderate → low
-    [0, 1, .52], [62, 2, .64], [1, 1, .74],                                 // a few get worse
+    [88, 1, .18], [89, 1, .30], [90, 1, .42], [91, 1, .54], [92, 1, .66],   // high → moderate
+    [93, 0, .48], [94, 0, .78],                                             // high → low
+    ...Array.from({ length: 15 }, (_, k) => [47 + k, 0, .14 + k * .051]),   // moderate → low
+    [0, 1, .40], [62, 2, .62], [1, 1, .80],                                 // a few get worse
   ];
   const moveOf = {};
   MOVES.forEach(m => { moveOf[m[0]] = m; });
@@ -23,9 +25,9 @@
   const CAPTIONS = [
     { at: 0,   t: 'Day 1: everyone starts where they are.',
       b: 'Nearly half of members start with low needs, about 4 in 10 with moderate needs, and roughly 1 in 8 with high-severity needs. No savings yet.' },
-    { at: .12, t: 'High-severity members improve first.',
-      b: 'Each high-severity member who steps down saves the most, about $7,147 a year on average. But they are a small group.' },
-    { at: .44, t: 'Then the moderate group adds up.',
+    { at: .12, t: 'As symptoms improve, members step down.',
+      b: 'High-severity members save the most each, about $7,147 a year on average. But they are a small group.' },
+    { at: .5, t: 'The moderate group adds up to the most.',
       b: 'Moderate members save less each, about $3,180 a year, but there are more than three times as many of them. Some members may get worse, and the ROI accounts for that too.' },
     { at: .88, t: 'After a year of care: $2.39 for every $1.',
       b: 'About 60% of the savings came from moderate members. Based on health care claims alone, before any productivity gains.' },
@@ -78,9 +80,10 @@
     counts.forEach((n, k) => { $('c' + k).textContent = n; });
     field.setAttribute('aria-label', `100 members: ${counts[0]} low, ${counts[1]} moderate and ${counts[2]} high severity`);
 
-    const high = 39.8 * clamp01((p - .14) / .30);
-    const mod = 60.5 * clamp01((p - .44) / .42);
-    $('ss-roi').textContent = '$' + (2.39 * (high + mod) / 100.3).toFixed(2);
+    // Both groups' savings build together over the year; the split is the study's 60.5 / 39.8 throughout
+    const r = clamp01((p - .12) / .74);
+    const high = 39.8 * r, mod = 60.5 * r;
+    $('ss-roi').textContent = '$' + (2.39 * r).toFixed(2);
     $('bar-mod').style.width = mod + '%';
     $('bar-high').style.width = high + '%';
     $('pct-mod').textContent = Math.floor(mod) + '%';   // 60.5% reads as "about 60%", as in the study
