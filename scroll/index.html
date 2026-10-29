@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Scroll — Savings Story</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
+<link rel="stylesheet" href="../shared/base.css?v=1">
+<link rel="stylesheet" href="scroll.css?v=1">
+<script src="../shared/chrome.js?v=1"></script>
+</head>
+<body>
+
+<section class="placeholder"><span>Previous section · scroll down</span></section>
+
+<!-- ============ Module 1: Day 1 → $2.39 (pinned while you scroll) ============ -->
+<section class="ss band" id="ss" aria-labelledby="ss-title">
+  <div class="ss-pin">
+    <div class="wrap ss-inner">
+      <header class="ss-head">
+        <div class="ss-titles">
+          <h2 class="h2" id="ss-title">Better mental health, lower health care costs</h2>
+          <p class="sub">Through quality care and early intervention, Modern Health helps members move from high-severity needs to lower levels of need, and health care costs come down with them.</p>
+        </div>
+        <div class="ss-clock" aria-hidden="true">
+          <span id="ss-month">Day 1</span>
+          <span class="ss-track"><span class="ss-fill" id="ss-fill"></span></span>
+        </div>
+      </header>
+
+      <div class="ss-body">
+        <div class="ss-story">
+          <p class="eyebrow">Health care savings per $1 invested</p>
+          <p class="ss-roi serif" id="ss-roi">$0.00</p>
+          <div class="ss-caption" aria-live="polite">
+            <p class="ss-cap-title serif" id="ss-cap-title">Day 1: everyone starts where they are.</p>
+            <p class="ss-cap-body" id="ss-cap-body">Nearly half of members start with low needs, about 4 in 10 with moderate needs, and roughly 1 in 8 with high-severity needs. No savings yet.</p>
+          </div>
+          <p class="ss-hint" id="ss-hint">
+            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v11M3.5 8.5 8 13l4.5-4.5"/></svg>
+            Scroll to see a year of care
+          </p>
+        </div>
+
+        <div class="ss-viz">
+          <div class="ss-zones">
+            <div class="ss-zone-lbl"><strong>Low severity</strong><span><b id="c0">47</b> members</span></div>
+            <div class="ss-zone-lbl"><strong>Moderate</strong><span><b id="c1">41</b> members</span></div>
+            <div class="ss-zone-lbl"><strong>High severity</strong><span><b id="c2">12</b> members</span></div>
+          </div>
+          <div class="ss-field" id="ss-field" role="img" aria-label="100 members: 47 low, 41 moderate and 12 high severity">
+            <i class="ss-zone"></i><i class="ss-zone"></i><i class="ss-zone"></i>
+          </div>
+          <ul class="ss-legend" aria-label="Dot color shows where each member started">
+            <li><i style="background: var(--low)"></i>Started low</li>
+            <li><i style="background: var(--mod)"></i>Started moderate</li>
+            <li><i style="background: var(--high)"></i>Started high</li>
+          </ul>
+          <div class="ss-bars">
+            <p class="ss-bars-lbl">Where the savings come from</p>
+            <div class="ss-bar"><span>Moderate members</span><span class="ss-bar-track"><span class="ss-bar-fill" id="bar-mod" style="background: var(--mod)"></span></span><b class="serif" id="pct-mod">0%</b></div>
+            <div class="ss-bar"><span>High-severity members</span><span class="ss-bar-track"><span class="ss-bar-fill" id="bar-high" style="background: var(--high)"></span></span><b class="serif" id="pct-high">0%</b></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="note">Source: Modern Health ROI study with Accorded, 13,548 U.S. members, 2023–2024. Starting mix (47/41/12), savings shares and $2.39 are from the study; the timing and which dots move are illustrative.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Module 2: Iceberg (closer) ============ -->
+<section class="ice band" aria-labelledby="ice-title">
+  <div class="wrap">
+    <header class="ice-head">
+      <h2 class="h2" id="ice-title">$2.39 is what we can measure. The full value may run deeper.</h2>
+      <p class="sub">Our ROI study counted health care claims only. Better mental health can show up in other places too.</p>
+    </header>
+
+    <div class="ice-grid">
+      <div class="ice-art ice-art--tip" aria-hidden="true">
+        <svg viewBox="0 0 300 110" preserveAspectRatio="xMidYMax meet"><polygon points="118,14 166,2 200,46 220,110 92,110 104,52" fill="var(--mod)"/></svg>
+      </div>
+      <div class="ice-above">
+        <p class="ice-tag ice-tag--solid">Measured in Modern Health’s ROI study</p>
+        <div class="ice-roi">
+          <span class="serif">$2.39</span>
+          <span>in health care savings for every $1 invested<br><em>Health care claims only</em></span>
+        </div>
+      </div>
+
+      <div class="ice-water" aria-hidden="true"></div>
+
+      <div class="ice-art ice-art--body" aria-hidden="true">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMin meet"><polygon points="92,0 220,0 272,58 296,160 246,262 132,298 40,238 8,150 50,62" fill="var(--track)" stroke="var(--mod)" stroke-width="2" stroke-dasharray="8 7" vector-effect="non-scaling-stroke"/></svg>
+      </div>
+      <div class="ice-below">
+        <p class="ice-tag">Possible additional return · not measured in our ROI study</p>
+        <ul class="ice-list">
+          <li><p class="serif">Productivity at work <sup>1</sup></p><p>Workplace costs, like missed work and reduced performance, make up 61% of the U.S. economic burden of depression.</p></li>
+          <li><p class="serif">Fewer lost workdays <sup>2</sup></p><p>An estimated 12 billion workdays are lost to depression and anxiety worldwide each year.</p></li>
+          <li><p class="serif">Symptoms that don’t escalate <sup>3</sup></p><p>In one study, most adults with untreated mild depression had major depression four years later.</p></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="note">Items below the waterline are possible additional return, not measured in Modern Health’s ROI study; figures there come from outside research, not Modern Health results. 1. Greenberg et al., PharmacoEconomics, 2021. 2. WHO and ILO, 2022. 3. Weissman et al., Psychiatric Services, 2010.</p>
+  </div>
+</section>
+
+<section class="placeholder"><span>Next section</span></section>
+
+<script src="scroll.js?v=1"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Staircase — Savings Story</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
+<link rel="stylesheet" href="../shared/base.css?v=1">
+<script src="../shared/chrome.js?v=1"></script>
+<style>
+  .st { min-height: 100vh; display: flex; align-items: center; padding-block: 88px 48px; }
+  .st-inner { display: flex; flex-direction: column; gap: clamp(20px, 3vh, 30px); }
+  .st-head { display: flex; flex-direction: column; gap: 10px; }
+  .st-chart { --max: clamp(220px, 40vh, 340px); --dot: 9px; display: flex; flex-direction: column; gap: 10px; }
+  .st-row { display: grid; grid-template-columns: 1fr .56fr 1fr .56fr 1fr; align-items: end; }
+  .st-row--base { border-bottom: 1px solid var(--rule); }
+  .st-step { display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; min-width: 0; }
+  .st-cost { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+  .st-cost .serif { font-size: clamp(20px, 2vw, 26px); }
+  .st-cost small { font-size: 12px; color: var(--muted); }
+  .st-block { height: calc(var(--h) * var(--max)); border-radius: 6px 6px 0 0; padding: 12px; display: flex; flex-direction: column; gap: 10px; overflow: hidden; }
+  .st-dots { display: flex; flex-wrap: wrap; gap: 4px; }
+  .st-dots i { width: var(--dot); height: var(--dot); border-radius: 50%; background: currentColor; }
+  .st-badge { display: none; margin-top: auto; font: 600 11.5px/1.3 'Montserrat', sans-serif; }
+  .st-arrow { align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; text-align: center; padding-inline: 8px; }
+  .st-arrow > div { height: calc(var(--h) * var(--max)); display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .st-arrow .serif { font-size: clamp(17px, 1.6vw, 21px); }
+  .st-arrow small { font-size: 11.5px; line-height: 1.35; color: var(--muted); }
+  .st-labels { display: grid; grid-template-columns: 1fr .56fr 1fr .56fr 1fr; }
+  .st-labels div { display: flex; flex-direction: column; gap: 2px; }
+  .st-labels strong { font-size: 14px; font-weight: 600; }
+  .st-labels span { font-size: 12px; color: var(--muted); }
+  .st-foot { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; padding: 14px 20px; border-radius: 12px; background: var(--panel); }
+  .st-foot > strong { font-size: 13px; font-weight: 600; width: 150px; }
+  .st-split { flex: 1 1 320px; display: flex; height: 40px; border-radius: 4px; overflow: hidden; }
+  .st-split span { display: flex; align-items: center; padding: 0 14px; font-size: 13px; font-weight: 600; white-space: nowrap; min-width: 0; }
+  .st-roi { display: flex; align-items: baseline; gap: 8px; }
+  .st-roi .serif { font-size: 34px; color: var(--accent); line-height: 1; }
+  .st-roi span:last-child { font-size: 12px; color: var(--muted); line-height: 1.3; }
+  @media (max-width: 760px) {
+    .st-chart { --dot: 6px; --max: 300px; }
+    .st-row, .st-labels { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+    .st-arrow, .st-labels .gap { display: none; }
+    .st-block { padding: 8px; }
+    .st-dots { gap: 3px; }
+    .st-badge { display: block; }
+    .st-cost small { display: none; }
+  }
+</style>
+</head>
+<body>
+<section class="st band" aria-labelledby="st-title">
+  <div class="wrap st-inner">
+    <header class="st-head">
+      <h2 class="h2" id="st-title">Every step down lowers costs</h2>
+      <p class="sub">Each dot is one of every 100 members. Each step is what a member at that level costs in health care each year.</p>
+    </header>
+
+    <div class="st-chart">
+      <div class="st-row st-row--base">
+        <div class="st-step">
+          <div class="st-cost"><span class="serif">≈ $5k</span><small>/ member / yr</small></div>
+          <div class="st-block" style="--h: .26; background: var(--low); color: var(--on-low)" role="img" aria-label="47 of every 100 members"><div class="st-dots" data-n="47"></div></div>
+        </div>
+        <div class="st-arrow" style="--h: .62">
+          <div><span class="serif">−$3,180</span><small>avg. saved per moderate member / yr</small>
+            <svg aria-hidden="true" width="56" height="40" viewBox="0 0 64 44" fill="none" stroke="var(--mod)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M58 6 Q22 6 10 36"/><path d="M4 28 L10 37 L19 32"/></svg></div>
+        </div>
+        <div class="st-step">
+          <div class="st-cost"><span class="serif">≈ $12k</span><small>/ member / yr</small></div>
+          <div class="st-block" style="--h: .62; background: var(--mod); color: var(--on-mod)" role="img" aria-label="41 of every 100 members"><div class="st-dots" data-n="41"></div><span class="st-badge">−$3,180 / yr as members step down</span></div>
+        </div>
+        <div class="st-arrow" style="--h: 1">
+          <div><span class="serif">−$7,147</span><small>avg. saved per high-severity member / yr</small>
+            <svg aria-hidden="true" width="56" height="40" viewBox="0 0 64 44" fill="none" stroke="var(--high)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M58 6 Q22 6 10 36"/><path d="M4 28 L10 37 L19 32"/></svg></div>
+        </div>
+        <div class="st-step">
+          <div class="st-cost"><span class="serif">≈ $19.5k</span><small>/ member / yr</small></div>
+          <div class="st-block" style="--h: 1; background: var(--high); color: var(--on-high)" role="img" aria-label="12 of every 100 members"><div class="st-dots" data-n="12"></div><span class="st-badge">−$7,147 / yr as members step down</span></div>
+        </div>
+      </div>
+      <div class="st-labels">
+        <div><strong>Low severity</strong><span>47 of every 100</span></div><div class="gap"></div>
+        <div><strong>Moderate</strong><span>41 of every 100</span></div><div class="gap"></div>
+        <div><strong>High severity</strong><span>12 of every 100</span></div>
+      </div>
+    </div>
+
+    <div class="st-foot">
+      <strong>Where total savings add up</strong>
+      <div class="st-split"><span style="flex: 60.5 1 0; background: var(--mod); color: var(--on-mod)">Moderate · 60%</span><span style="flex: 39.8 1 0; background: var(--high); color: var(--on-high)">High · 40%</span></div>
+      <div class="st-roi"><span class="serif">$2.39</span><span>saved per<br>$1 invested</span></div>
+    </div>
+
+    <p class="note">Source: Modern Health ROI study with Accorded. MarketScan 2022 claims and 13,548 U.S. members, 2023–2024. Spend per member read from Figure 1; confirm exact values with research.</p>
+  </div>
+</section>
+<script>
+  document.querySelectorAll('.st-dots').forEach(el => { el.innerHTML = '<i></i>'.repeat(+el.dataset.n); });
+</script>
+</body>
+</html>

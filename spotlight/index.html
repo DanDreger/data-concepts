@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Spotlight — Savings Story</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
+<link rel="stylesheet" href="../shared/base.css?v=1">
+<script src="../shared/chrome.js?v=1"></script>
+<style>
+  .sp { min-height: 100vh; display: flex; align-items: center; padding-block: 88px 48px; }
+  .sp-inner { display: flex; flex-direction: column; gap: clamp(20px, 3vh, 30px); }
+  .sp-head { display: flex; flex-direction: column; gap: 10px; }
+  .sp-tabs { display: flex; flex-wrap: wrap; gap: 10px; }
+  .sp-body { display: grid; grid-template-columns: minmax(0, 560px) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
+  .sp-grid { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); gap: clamp(4px, .6vw, 7px); padding: clamp(12px, 1.6vw, 20px); border-radius: 12px; background: var(--panel); }
+  .sp-grid i { aspect-ratio: 1; border-radius: 50%; transition: opacity .5s ease; }
+  .sp[data-view="therapy"] .sp-grid i:not(.g2) { opacity: var(--dim); }
+  .sp-legend { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12px; color: var(--muted); }
+  .sp-legend li { display: flex; align-items: center; gap: 6px; }
+  .sp-legend i { width: 10px; height: 10px; border-radius: 50%; }
+  .sp-copy { display: flex; flex-direction: column; gap: 12px; }
+  .sp-big { margin: 0; font-size: clamp(44px, 5vw, 60px); line-height: 1; }
+  .sp-big-lbl { margin: 0; font-size: 14px; color: var(--muted); }
+  .sp-text { margin: 0; font-size: 15.5px; line-height: 1.6; max-width: 46ch; }
+  .sp-split { display: flex; flex-direction: column; gap: 8px; }
+  .sp-split p { margin: 0; font-size: 12px; color: var(--muted); }
+  .sp-bar { display: flex; height: 46px; border-radius: 6px; overflow: hidden; background: var(--track); }
+  .sp-bar span { display: flex; align-items: center; padding: 0 14px; font-size: 14px; font-weight: 600; min-width: 0; white-space: nowrap; box-sizing: border-box;
+    transition: background .5s ease, color .5s ease; }
+  .sp-mod { flex: 60.5 1 0; background: var(--mod); color: var(--on-mod); border: 2px solid transparent; }
+  .sp-high { flex: 39.8 1 0; background: var(--high); color: var(--on-high); }
+  .sp[data-view="therapy"] .sp-mod { background: transparent; color: var(--accent); border: 2px dashed var(--accent); }
+  @media (max-width: 860px) {
+    .sp-body { grid-template-columns: minmax(0, 1fr); }
+    .sp-grid { grid-template-columns: repeat(10, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+<section class="sp band" id="sp" data-view="adaptive" aria-labelledby="sp-title">
+  <div class="wrap sp-inner">
+    <header class="sp-head">
+      <h2 class="h2" id="sp-title">Who is your mental health benefit built for?</h2>
+      <p class="sub">Every dot is one of 100 members. Compare who each approach is designed to reach, and where the savings came from.</p>
+    </header>
+
+    <div class="sp-tabs" role="group" aria-label="Choose an approach">
+      <button type="button" class="btn-pill" data-view="adaptive" aria-pressed="true">Adaptive care: built for everyone</button>
+      <button type="button" class="btn-pill" data-view="therapy" aria-pressed="false">Therapy-first: built for the highest need</button>
+    </div>
+
+    <div class="sp-body">
+      <div>
+        <div class="sp-grid" id="sp-grid" role="img" aria-label="All 100 members highlighted"></div>
+        <ul class="sp-legend">
+          <li><i style="background: var(--low)"></i>47 low severity</li>
+          <li><i style="background: var(--mod)"></i>41 moderate</li>
+          <li><i style="background: var(--high)"></i>12 high severity</li>
+        </ul>
+      </div>
+      <div class="sp-copy" aria-live="polite">
+        <p class="eyebrow" id="sp-kicker">Adaptive care</p>
+        <p class="sp-big serif" id="sp-big">100 of 100</p>
+        <p class="sp-big-lbl" id="sp-big-lbl">members with care matched to their needs</p>
+        <p class="sp-text" id="sp-text">Coaching, digital tools and Circles for lower needs; therapy and psychiatry when symptoms call for it. For moderate members, coaching delivered more savings than therapy.</p>
+      </div>
+    </div>
+
+    <div class="sp-split">
+      <p>Share of total health care savings in the study</p>
+      <div class="sp-bar"><span class="sp-mod">Moderate · 60%</span><span class="sp-high">High · 40%</span></div>
+    </div>
+
+    <p class="note">Source: Modern Health ROI study with Accorded, 13,548 U.S. members, 2023–2024 (Table 1; Figures 3a–3b). The comparison of approaches is illustrative.</p>
+  </div>
+</section>
+<script>
+(() => {
+  const sp = document.getElementById('sp'), grid = document.getElementById('sp-grid');
+  const COLOR = ['var(--low)', 'var(--mod)', 'var(--high)'];
+  for (let i = 0; i < 100; i++) {
+    const g = i < 47 ? 0 : i < 88 ? 1 : 2;
+    const d = document.createElement('i');
+    d.className = 'g' + g;
+    d.style.background = COLOR[g];
+    grid.appendChild(d);
+  }
+  const COPY = {
+    adaptive: { k: 'Adaptive care', big: '100 of 100', lbl: 'members with care matched to their needs', aria: 'All 100 members highlighted',
+      text: 'Coaching, digital tools and Circles for lower needs; therapy and psychiatry when symptoms call for it. For moderate members, coaching delivered more savings than therapy.' },
+    therapy: { k: 'Therapy-first benefit', big: '12 of 100', lbl: 'members a therapy-first benefit is built around', aria: 'Only the 12 high-severity members highlighted; 88 dimmed',
+      text: 'Benefits designed around therapy focus on employees with the most severe symptoms. That group drove about 40% of savings. The moderate group drove the other 60%.' },
+  };
+  const set = v => {
+    sp.dataset.view = v;
+    document.querySelectorAll('.sp-tabs button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === v)));
+    const c = COPY[v];
+    document.getElementById('sp-kicker').textContent = c.k;
+    document.getElementById('sp-big').textContent = c.big;
+    document.getElementById('sp-big-lbl').textContent = c.lbl;
+    document.getElementById('sp-text').textContent = c.text;
+    grid.setAttribute('aria-label', c.aria);
+  };
+  document.querySelector('.sp-tabs').addEventListener('click', e => { const b = e.target.closest('button'); if (b) set(b.dataset.view); });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+/* Savings-story prototypes: shared tokens, type and chrome.
+   Colorway values follow Chris's mh-home-intro prototypes (Neutral, Navy, Navy Solid, Sky);
+   --low / --mod / --high are the three severity series, tuned per colorway for contrast. */
+
+@font-face { font-family: 'Lora'; font-weight: 400; font-display: swap; src: url('../fonts/lora-400.ttf') format('truetype'); }
+@font-face { font-family: 'Montserrat'; font-weight: 400; font-display: swap; src: url('../fonts/montserrat-400.ttf') format('truetype'); }
+@font-face { font-family: 'Montserrat'; font-weight: 500; font-display: swap; src: url('../fonts/montserrat-500.ttf') format('truetype'); }
+
+:root, [data-colorway="navy"] {
+  --page: #012346;
+  --bg: linear-gradient(138.18deg, rgba(6, 89, 152, 0) 31.95%, #065998 100%), #012346;
+  --ink: #FAF4EE;
+  --muted: rgba(250, 244, 238, .78);
+  --faint: rgba(250, 244, 238, .62);
+  --accent: #B3D4FB;
+  --on-accent: #012346;
+  --rule: rgba(255, 255, 255, .22);
+  --panel: rgba(255, 255, 255, .06);
+  --track: rgba(255, 255, 255, .09);
+  --water: rgba(6, 89, 152, .38);
+  --low: #6F8DB8;  --on-low: #012346;
+  --mod: #B3D4FB;  --on-mod: #012346;
+  --high: #FFCC8A; --on-high: #012346;
+  --dim: .16;
+}
+[data-colorway="navy-solid"] {
+  --page: #012346;
+  --bg: #012346;
+  --ink: #FAF4EE;
+  --muted: rgba(250, 244, 238, .78);
+  --faint: rgba(250, 244, 238, .62);
+  --accent: #B3D4FB;
+  --on-accent: #012346;
+  --rule: rgba(255, 255, 255, .22);
+  --panel: rgba(255, 255, 255, .06);
+  --track: rgba(255, 255, 255, .09);
+  --water: rgba(6, 89, 152, .38);
+  --low: #6F8DB8;  --on-low: #012346;
+  --mod: #B3D4FB;  --on-mod: #012346;
+  --high: #FFCC8A; --on-high: #012346;
+  --dim: .16;
+}
+[data-colorway="neutral"] {
+  --page: #F6EFE8;
+  --bg: linear-gradient(106.77deg, #FDF9F7 0.88%, #F6EFE8 100%);
+  --ink: #4B4742;
+  --muted: #625C55;
+  --faint: #6F6962;
+  --accent: #005399;
+  --on-accent: #FFFFFF;
+  --rule: #D9D0C7;
+  --panel: rgba(255, 255, 255, .6);
+  --track: rgba(75, 71, 66, .09);
+  --water: rgba(0, 105, 191, .08);
+  --low: #B0A59A;  --on-low: #2A2622;
+  --mod: #0069BF;  --on-mod: #FFFFFF;
+  --high: #C46F1C; --on-high: #FFFFFF;
+  --dim: .18;
+}
+[data-colorway="sky"] {
+  --page: #DFEEFF;
+  --bg: linear-gradient(103.48deg, rgba(255, 251, 232, 0) 12.8%, #FFFBE8 103.91%), #DFEEFF;
+  --ink: #3F4650;
+  --muted: #545C66;
+  --faint: #5F6772;
+  --accent: #0069BF;
+  --on-accent: #FFFFFF;
+  --rule: rgba(0, 83, 153, .2);
+  --panel: rgba(255, 255, 255, .6);
+  --track: rgba(0, 83, 153, .09);
+  --water: rgba(0, 105, 191, .1);
+  --low: #93A9C3;  --on-low: #1D2A3A;
+  --mod: #0069BF;  --on-mod: #FFFFFF;
+  --high: #C46F1C; --on-high: #FFFFFF;
+  --dim: .2;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--page); }
+body { overflow-x: hidden; color: var(--ink); font: 500 16px/1.5 'Montserrat', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 56px); }
+.band { background: var(--bg); }
+.eyebrow { margin: 0; font: 500 12.8px/1.2 'Montserrat', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.h2 { margin: 0; font: 400 clamp(28px, 3.6vw, 48px)/1.15 'Lora', Georgia, serif; letter-spacing: -.02em; text-wrap: balance; }
+.sub { margin: 0; max-width: 62ch; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.55; color: var(--muted); }
+.serif { font-family: 'Lora', Georgia, serif; font-weight: 400; }
+.note { margin: 0; font-size: 11.5px; line-height: 1.55; color: var(--faint); max-width: 110ch; }
+
+/* Placeholder sections above / below a module so it can be scrolled into, like the home intro prototypes */
+.placeholder { min-height: 60vh; display: grid; place-items: center; background: var(--page); }
+.placeholder span { font: 500 12px/1 'Montserrat', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
+
+.btn-pill {
+  min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--rule);
+  background: transparent; color: var(--ink); font: 600 14px/1 'Montserrat', sans-serif; cursor: pointer;
+}
+.btn-pill[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn-pill:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* Prototype chrome (built by chrome.js) */
+.switcher {
+  position: fixed; left: 12px; top: 12px; z-index: 100; display: flex; flex-wrap: wrap; align-items: center; gap: 4px;
+  max-width: calc(100vw - 24px); padding: 5px; border-radius: 999px;
+  background: rgba(255, 255, 255, .92); box-shadow: 0 2px 12px rgba(0, 0, 0, .14);
+  font: 500 12px/1 'Montserrat', sans-serif; color: #2B2B2B;
+}
+.switcher a, .switcher button {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 30px; padding: 0 11px; border: 0; border-radius: 999px;
+  background: transparent; color: inherit; font: inherit; text-decoration: none; cursor: pointer;
+}
+.switcher a[aria-current="page"], .switcher button[aria-pressed="true"] { background: #012346; color: #FFFFFF; }
+.switcher a:focus-visible, .switcher button:focus-visible { outline: 2px solid #0069BF; outline-offset: 2px; }
+.switcher-sep { width: 1px; height: 18px; background: rgba(0, 0, 0, .15); margin-inline: 2px; }
+.swatch { width: 12px; height: 12px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .2); }
+@media (max-width: 640px) {
+  .switcher { top: auto; bottom: 10px; left: 50%; transform: translateX(-50%); flex-wrap: nowrap; gap: 2px; font-size: 11px; }
+  .switcher a, .switcher button { padding: 0 8px; }
+  .switcher .lbl { display: none; }
+  body { padding-bottom: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; animation: none !important; } }

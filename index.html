@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Savings Story Prototypes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;1,400&family=Montserrat:wght@500;600&display=swap">
+<style>
+  /* Index of the savings-story concepts. Same layout and palette as the home intro prototype index. */
+  :root { --page: #F6EFE8; --ink: #4B4742; --muted: #6F6962; --rule: #D9D0C7; --accent: #005399; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: linear-gradient(106.77deg, #FDF9F7 0.88%, var(--page) 100%) fixed, var(--page);
+    color: var(--ink); font: 500 16px/1.5 'Montserrat', system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+    padding-inline: 24px; padding-block: 72px 96px;
+  }
+  main { max-width: 960px; margin: 0 auto; }
+  .eyebrow { font-size: 12.8px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 0 0 16px; }
+  h1 { font: 400 clamp(40px, 6vw, 61px)/1.15 'Lora', Georgia, serif; letter-spacing: -.02em; margin: 0 0 20px; text-wrap: balance; }
+  h1 em { font-style: italic; }
+  .lede { max-width: 60ch; margin: 0 0 56px; }
+  ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  li { border-bottom: 1px solid var(--rule); }
+  .concept { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 32px; align-items: baseline; padding-block: 28px; }
+  .concept h2 { font: 400 32px/1.2 'Lora', Georgia, serif; margin: 0; }
+  .concept p { grid-column: 1; margin: 0; max-width: 60ch; color: var(--muted); }
+  .links { grid-column: 2; grid-row: 1 / span 2; display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-end; align-self: center; }
+  .links a { display: inline-block; padding: 12px 22px; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 15px; background: var(--accent); color: #FFFFFF; }
+  .links a.ghost { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+  .links a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  .note { margin-top: 40px; font-size: 14px; color: var(--muted); max-width: 70ch; }
+  @media (max-width: 640px) {
+    .concept { grid-template-columns: minmax(0, 1fr); }
+    .links { grid-column: 1; grid-row: auto; justify-content: flex-start; margin-top: 12px; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Modern Health · Economic value</p>
+  <h1>Better mental health, <em>lower</em> health care costs</h1>
+  <p class="lede">Prototypes for the "where most health care savings come from" module, built on the ROI study (13,548 members, $2.39 per $1). Use the picker at the top-left of any page to switch colorway (Navy, Navy Solid, Neutral, Sky).</p>
+
+  <ul>
+    <li class="concept">
+      <h2>Scroll</h2>
+      <p>The module pins while you scroll through a year of care: 100 members step down a level, savings build from $0.00 to $2.39, and the iceberg closer shows the return the study didn't measure.</p>
+      <div class="links"><a href="scroll/index.html?c=navy">Navy</a><a class="ghost" href="scroll/index.html?c=neutral">Neutral</a></div>
+    </li>
+    <li class="concept">
+      <h2>Spotlight</h2>
+      <p>The same 100 members under two approaches. Adaptive care lights everyone; therapy-first lights only the 12 high-severity members and leaves the moderate 60% of savings empty.</p>
+      <div class="links"><a href="spotlight/index.html?c=navy">Navy</a><a class="ghost" href="spotlight/index.html?c=neutral">Neutral</a></div>
+    </li>
+    <li class="concept">
+      <h2>Staircase</h2>
+      <p>Static, no interaction. Costs rise as steps from low to high severity, with members as dots inside each step and the savings from each step down between them.</p>
+      <div class="links"><a href="staircase/index.html?c=navy">Navy</a><a class="ghost" href="staircase/index.html?c=neutral">Neutral</a></div>
+    </li>
+  </ul>
+
+  <p class="note">Prototype copy, not yet reviewed by Legal or CS&amp;R. Study figures come from the Modern Health ROI study with Accorded; per-member spend is read from its Figure 1, and the scroll sequence's dot movement is illustrative.</p>
+</main>
+</body>
+</html>
